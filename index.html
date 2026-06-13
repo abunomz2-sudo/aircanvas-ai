@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Air Drawing — Interactive Creative Suite</title>
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for minimal icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app-container">
+        <!-- Live Webcam Feed (Mirrored) -->
+        <video id="webcam" autoplay playsinline></video>
+        <!-- Canvas Drawing Overlay (Mirrored) -->
+        <canvas id="paint-canvas"></canvas>
+
+        <!-- Loading Model Overlay -->
+        <div id="loading-overlay">
+            <div class="loader-spinner"></div>
+            <div class="loader-text">Loading hand gesture models...</div>
+        </div>
+
+        <!-- Notification Toast -->
+        <div id="toast-message"></div>
+
+        <!-- Floating macOS-style Dock -->
+        <div id="floating-dock" class="dock-panel">
+            <!-- 1. Palette section -->
+            <div class="dock-section colors-section">
+                <!-- Color dots added dynamically via JS -->
+            </div>
+            
+            <div class="dock-separator"></div>
+
+            <!-- 2. Tools section -->
+            <div class="dock-section tools-section">
+                <button id="tool-BRUSH" class="dock-btn active" data-tool="BRUSH" title="Freehand Brush"><i class="fa-solid fa-paintbrush"></i></button>
+                <button id="tool-NEON" class="dock-btn" data-tool="NEON" title="Neon Glow Brush"><i class="fa-solid fa-wand-magic-sparkles"></i></button>
+                <button id="tool-ERASER" class="dock-btn" data-tool="ERASER" title="Eraser"><i class="fa-solid fa-eraser"></i></button>
+                <button id="tool-LINE" class="dock-btn" data-tool="LINE" title="Straight Line"><i class="fa-solid fa-ruler-horizontal"></i></button>
+                <button id="tool-RECT" class="dock-btn" data-tool="RECT" title="Rectangle"><i class="fa-regular fa-square"></i></button>
+                <button id="tool-CIRCLE" class="dock-btn" data-tool="CIRCLE" title="Circle"><i class="fa-regular fa-circle"></i></button>
+                <button id="tool-BUCKET" class="dock-btn" data-tool="BUCKET" title="Paint Bucket"><i class="fa-solid fa-fill-drip"></i></button>
+            </div>
+
+            <div class="dock-separator"></div>
+
+            <!-- 3. Actions section -->
+            <div class="dock-section actions-section">
+                <button id="action-UNDO" class="dock-btn" data-action="UNDO" title="Undo Last Stroke (Z)"><i class="fa-solid fa-arrow-rotate-left"></i></button>
+                <button id="action-REDO" class="dock-btn" data-action="REDO" title="Redo Stroke (Y)"><i class="fa-solid fa-arrow-rotate-right"></i></button>
+                <button id="action-SAVE" class="dock-btn" data-action="SAVE" title="Save Drawing Crop (S)"><i class="fa-solid fa-download"></i></button>
+                <button id="action-BG_MODE" class="dock-btn" data-action="BG_MODE" title="Toggle Canvas Mode (B)"><i class="fa-solid fa-desktop"></i></button>
+            </div>
+
+            <div class="dock-separator"></div>
+
+            <!-- 4. Brush Size Section -->
+            <div class="dock-section size-section">
+                <span class="size-label">SIZE</span>
+                <input type="range" id="size-slider" min="2" max="40" value="8">
+                <span id="size-value" class="size-display">8px</span>
+            </div>
+        </div>
+
+        <!-- Separate Floating Status Card -->
+        <div id="status-card" class="dock-panel">
+            <div class="status-left">
+                <span id="fps-display">FPS: 30</span>
+                <span id="active-tool-display">TOOL: Brush</span>
+            </div>
+            <div id="gesture-badge" class="badge">HOVER</div>
+        </div>
+    </div>
+
+    <!-- MediaPipe CDN Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>
+    <!-- Core App Logic -->
+    <script src="app.js"></script>
+</body>
+</html>
