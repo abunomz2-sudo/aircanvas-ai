@@ -2,6 +2,10 @@
 
 A hand-gesture interactive digital painting application with a high-fidelity macOS-style floating dock, multiple drawing tools, and a sidebar-navigated launcher dashboard.
 
+## 🌐 Web App & Live Demo
+This project includes a fully browser-based Web App port of the Air Canvas application. It runs completely client-side in the browser using MediaPipe's hand tracking library.
+- **Try the Live Demo**: [https://abunomz2-sudo.github.io/aircanvas-ai/](https://abunomz2-sudo.github.io/aircanvas-ai/)
+
 ---
 
 ## 🚀 Quick Start
