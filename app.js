@@ -44,6 +44,8 @@ const RING_TIP   = 16, RING_PIP   = 14;
 const PINKY_TIP  = 20, PINKY_PIP  = 18;
 const THUMB_TIP  = 4,  THUMB_IP   = 3;
 
+const TOOLBAR_H = 80;
+
 // ─── State Variables ──────────────────────────────────────────
 let currentColorIdx = 0;
 let brushSize = 8;
@@ -295,6 +297,24 @@ function drawLineNeon(ctx, p1, p2, colorIdx, size) {
     ctx.moveTo(p1[0], p1[1]);
     ctx.lineTo(p2[0], p2[1]);
     ctx.stroke();
+    
+    // Reset shadow
+    ctx.shadowBlur = 0;
+}
+
+function drawCircleNeon(ctx, center, colorIdx, size) {
+    const rgb = COLORS[COLOR_NAMES[colorIdx]];
+    const colorStr = `rgb(${rgb[0]}, ${rgb[1]}, ${rgb[2]})`;
+    const coreStr = `rgb(${Math.min(255, rgb[0] + 150)}, ${Math.min(255, rgb[1] + 150)}, ${Math.min(255, rgb[2] + 150)})`;
+    
+    // Core white/bright circle
+    ctx.shadowBlur = size * 2.5;
+    ctx.shadowColor = colorStr;
+    ctx.fillStyle = coreStr;
+    
+    ctx.beginPath();
+    ctx.arc(center[0], center[1], size * 0.2, 0, 2 * Math.PI);
+    ctx.fill();
     
     // Reset shadow
     ctx.shadowBlur = 0;

@@ -6,7 +6,7 @@ Run: python launcher.py
 
 import tkinter as tk
 from tkinter import messagebox
-import subprocess, sys, os, threading, time
+import subprocess, sys, os, threading, time, math
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 SCRIPT   = os.path.join(BASE_DIR, "air_drawing.py")
@@ -411,6 +411,5 @@ class Launcher(tk.Tk):
 
 
 if __name__ == "__main__":
-    import math
     app = Launcher()
     app.mainloop()
